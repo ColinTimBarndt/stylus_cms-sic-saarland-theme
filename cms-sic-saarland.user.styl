@@ -265,10 +265,22 @@
         @media (max-width: 767px)
             padding-right: 0
     /* NAV */
-    .navbar
+    .navbar, .user-login
         background: $secondary !important
         width: 100%
         z-index: 1200
+        position: fixed
+        top: 0
+        right: 0
+    .user-login
+        padding: 2px 0
+        height: 26px
+        display: flex
+        justify-content: flex-end
+        align-items: baseline
+        @media (min-width: 1200px)
+            max-width: 1110px
+            padding: unquote("2px max(10px, calc(50vw - 1110px/2))")
     .navbar-inner
         background: inherit !important
         border: none !important
