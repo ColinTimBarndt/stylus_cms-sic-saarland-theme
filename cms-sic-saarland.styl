@@ -1,0 +1,656 @@
+/*==UserStyle==
+@name Themed CMS
+@version 1.0.0
+@description Adds themes to the CMS pages
+@namespace github.com/ColinTimBarndt/cms-sic-saarland
+@author CoBa
+@preprocessor stylus
+
+@var select theme-dark "Theme" {
+    "Dark": "true",
+    "Light": "false"
+}
+==/UserStyle==*/
+
+@-moz-document domain("cms.sic.saarland")
+    /* font */
+    $base-font-size-smallest = 0.815em
+    $base-font-size-smaller = 0.875em
+    $base-font-size = 0.938em
+    $base-font-size-larger = 1.063em
+    $base-font-size-largest = 1.118em
+    $font-up-6 = 2.296em
+    $font-up-5 = 2em
+    $font-up-4 = 1.7511em
+    $font-up-3 = 1.5157em
+    $font-up-2 = 1.3195em
+    $font-up-1 = 1.1487em
+    $font-0 = 1em
+    $font-down-1 = 0.8706em
+    $font-down-2 = 0.7579em
+    $font-down-3 = 0.6599em
+    $font-down-4 = 0.5745em
+    $font-down-5 = 0.5em
+    $font-down-6 = 0.4355em
+    $font-up-3-rem = 1.5157rem
+    $font-up-2-rem = 1.3195rem
+    $font-up-1-rem = 1.1487rem
+    $font-0-rem = 1rem
+    $font-down-1-rem = 0.8706rem
+    $font-down-2-rem = 0.7579rem
+    $font-size-ios-input = 1.07em
+    $line-height-small = 1
+    $line-height-medium = 1.2
+    $line-height-large = 1.4
+    $heading-font-family = Arial, sans-serif
+    $font-family = Arial, sans-serif
+
+    if theme-dark
+        /* dark */
+        $primary = #ddd
+        $secondary = #222
+        $tertiary = #0f82af
+        $quaternary = #c14924
+        $header_background = #111
+        $header_primary = #ddd
+        $highlight = #a87137
+        $danger = #e45735
+        $warning = #e09a00
+        $success = #1ca551
+        $love = #fa6c8d
+        $always-black-rgb = 0, 0, 0
+        $primary-rgb = 221, 221, 221
+        $primary-low-rgb = 48.62, 48.62, 48.62
+        $secondary-rgb = 34, 34, 34
+        $header_background-rgb = 17, 17, 17
+        $tertiary-rgb = 15, 130, 175
+        $primary-very-low = #282828
+        $primary-low = #313131
+        $primary-low-mid = #7a7a7a
+        $primary-medium = #909090
+        $primary-high = #a6a6a6
+        $primary-very-high = #c7c7c7
+        $header_primary-low = #484848
+        $header_primary-low-mid = #838383
+        $header_primary-medium = #a4a4a4
+        $header_primary-high = #b9b9b9
+        $header_primary-very-high = #d2d2d2
+        $secondary-low = #bdbdbd
+        $secondary-medium = #919191
+        $secondary-high = #646464
+        $secondary-very-high = #313131
+        $tertiary-very-low = #04212c
+        $tertiary-low = #052e3d
+        $tertiary-medium = #084860
+        $tertiary-high = #0b6283
+        $tertiary-hover = #14aeea
+        $quaternary-low = #3a160b
+        $highlight-low = #22170b
+        $highlight-medium = #4c3319
+        $highlight-high = #976632
+        $danger-low = #591b0c
+        $danger-low-mid = rgba(99, 30, 13, 0.7)
+        $danger-medium = #a13116
+        $danger-hover = #c63c1b
+        $warning-low = #5c3f00
+        /* TODO */
+        $success-low = #0b4220
+        $success-medium = #116331
+        $success-hover = #168441
+        $love-low = #8a0524
+        $wiki = green
+        $blend-primary-secondary-5 = #3c3c3c
+        $primary-med-or-secondary-med = #919191
+        $primary-med-or-secondary-high = #646464
+        $primary-high-or-secondary-low = #bdbdbd
+        $primary-low-mid-or-secondary-high = #646464
+        $primary-low-mid-or-secondary-low = #bdbdbd
+        $primary-or-primary-low-mid = #7a7a7a
+        $highlight-low-or-medium = #4c3319
+        $tertiary-or-tertiary-low = #052e3d
+        $tertiary-low-or-tertiary-high = #0b6283
+        $tertiary-med-or-tertiary = #0f82af
+        $secondary-or-primary = #ddd
+        $tertiary-or-white = #fff
+        $facebook-or-white = #fff
+        $twitter-or-white = #fff
+        $hljs-comment = #bba
+        $hljs-number = #aff
+        $hljs-string = #f99
+        $hljs-literal = #9ae
+        $hljs-tag = #99f
+        $hljs-attribute = #0ee
+        $hljs-symbol = #fbe
+        $hljs-bg = #333
+        $google = #fff
+        $google-hover = #f2f2f2
+        $instagram = #e1306c
+        $instagram-hover = #ac194b
+        $facebook = #1877f2
+        $facebook-hover = #0a54b3
+        $cas = #70ba61
+        $twitter = #1da1f2
+        $twitter-hover = #0c85d0
+        $github = #100e0f
+        $github-hover = #463e42
+        $discord = #7289da
+        $discord-hover = #4a67cf
+        $gold = #e7c300
+        $silver = silver
+        $bronze = #cd7f32
+    else
+        /* light */
+        $primary = #222
+        $secondary = #fff
+        $tertiary = #08c
+        $quaternary = #e45735
+        $header_background = #fff
+        $header_primary = #333
+        $highlight = #ffff4d
+        $danger = #e45735
+        $warning = #d99500
+        $success = #090
+        $love = #fa6c8d
+        $always-black-rgb = 0, 0, 0
+        $primary-rgb = 34,34,34
+        $primary-low-rgb = 232.9,232.9,232.9
+        $secondary-rgb = 255,255,255
+        $header_background-rgb = 255,255,255
+        $tertiary-rgb = 0,136,204
+        $primary-very-low = #f8f8f8
+        $primary-low = #e9e9e9
+        $primary-low-mid = #bdbdbd
+        $primary-medium = #919191
+        $primary-high = #646464
+        $primary-very-high = #434343
+        $header_primary-low = #f2f2f2
+        $header_primary-low-mid = #d0d0d0
+        $header_primary-medium = #afafaf
+        $header_primary-high = #929292
+        $header_primary-very-high = #5e5e5e
+        $secondary-low = #4d4d4d
+        $secondary-medium = gray
+        $secondary-high = #a6a6a6
+        $secondary-very-high = #ededed
+        $tertiary-very-low = #e0f5ff
+        $tertiary-low = #d1f0ff
+        $tertiary-medium = #6cf
+        $tertiary-high = #0aadff
+        $tertiary-hover = #069
+        $quaternary-low = #f7cdc2
+        $highlight-low = #ffffca
+        $highlight-medium = #ffffa6
+        $highlight-high = #a6a600
+        $danger-low = #fbe6e1
+        $danger-low-mid = rgba(242,171,154,0.7)
+        $danger-medium = #ec8972
+        $danger-hover = #c63c1b
+        $warning-low = #ffefcc
+        /* TODO */
+        $success-low = #b8ffb8
+        $success-medium = #4dff4d
+        $success-hover = #007a00
+        $love-low = #fee9ee
+        $wiki = green
+        $blend-primary-secondary-5 = #f9f9f9
+        $primary-med-or-secondary-med = #919191
+        $primary-med-or-secondary-high = #919191
+        $primary-high-or-secondary-low = #646464
+        $primary-low-mid-or-secondary-high = #bdbdbd
+        $primary-low-mid-or-secondary-low = #bdbdbd
+        $primary-or-primary-low-mid = #222
+        $highlight-low-or-medium = #ffffca
+        $tertiary-or-tertiary-low = #08c
+        $tertiary-low-or-tertiary-high = #d1f0ff
+        $tertiary-med-or-tertiary = #6cf
+        $secondary-or-primary = #fff
+        $tertiary-or-white = #08c
+        $facebook-or-white = #1877f2
+        $twitter-or-white = #1da1f2
+        $hljs-comment = #998
+        $hljs-number = #099
+        $hljs-string = #d14
+        $hljs-literal = #458
+        $hljs-tag = #000080
+        $hljs-attribute = #008080
+        $hljs-symbol = #990073
+        $hljs-bg = #f8f8f8
+        $google = #fff
+        $google-hover = #f2f2f2
+        $instagram = #e1306c
+        $instagram-hover = #ac194b
+        $facebook = #1877f2
+        $facebook-hover = #0a54b3
+        $cas = #70ba61
+        $twitter = #1da1f2
+        $twitter-hover = #0c85d0
+        $github = #100e0f
+        $github-hover = #463e42
+        $discord = #7289da
+        $discord-hover = #4a67cf
+        $gold = #e7c300
+        $silver = silver
+        $bronze = #cd7f32
+    shadow-under-text()
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+    icon-mono()
+        transition: filter 0.25s !important
+        if theme-dark
+            filter: grayscale(1) contrast(50%) brightness(230%)
+        else
+            filter: grayscale(1) contrast(50%)
+    icon-mono-hover()
+        if theme-dark
+            filter: grayscale(1) contrast(50%) brightness(50%)
+        else
+            filter: grayscale(1) contrast(50%) brightness(260%)
+    html
+        color: $primary
+        font-family: $font-family
+        font-size: $base-font-size
+        line-height: $line-height-large
+        background-color: $secondary
+        overflow-y: scroll
+        direction: ltr
+    body
+        color: inherit
+        font-size: inherit
+        line-height: inherit
+        background: inherit
+        padding-left: 0
+        margin-top: -10px
+    @media (max-width: 767px)
+        body
+            padding-right: 0
+    /* NAV */
+    .navbar
+        background: $secondary !important
+        width: 100%
+        z-index: 1200
+    .navbar-inner
+        background: inherit !important
+        border: none !important
+        color: $primary
+        box-shadow: none !important
+        min-height: unset
+        max-width: 1110px
+        margin: 0 auto
+    .navbar .brand,
+    .navbar button
+        font-size: $font-up-1
+        line-height: $line-height-small
+        box-sizing: border-box
+        min-height: 30px
+        padding: 6px 12px !important
+        margin: 0
+        color: inherit !important
+    .navbar .brand
+        margin-left: -10px
+    .navbar .brand:hover,
+    .navbar .pull-right.nav:hover
+        color: $quaternary !important
+        background-color: $quaternary-low !important
+    .navbar .nav
+        margin: 0px
+        list-style: none
+        padding: 0
+        .caret
+            align-self: start
+            margin-top: 7px !important
+            border-top-color: $primary !important
+    .navbar .nav>li
+        display: flex
+        float: left
+        margin-right: 0.5em
+        list-style: none
+        &.active>a
+            box-shadow: none
+            background: $secondary-very-high !important
+        &>a
+            border: none
+            padding: 6px 12px
+            color: $primary !important
+            background: none !important
+            font-size: $font-up-1 !important
+            line-height: $line-height-small !important
+            box-sizing: border-box
+            min-height: 30px
+            display: flex
+            align-items: center
+            transition: background 0.15s
+            &:hover
+                color: $quaternary !important
+                background-color: $quaternary-low !important
+    .navbar .nav a:hover>.caret
+        border-top-color: $quaternary !important
+    /* DROPDOWN */
+    .dropdown.open>.dropdown-menu,
+    .btn-group.open>.dropdown-menu.open
+        color: $primary-high
+        border: 1px solid $primary-low !important
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2)
+        background-color: $secondary
+        border-radius: 0
+        display: flex
+        flex-direction: column
+        padding: 0
+        margin: 0
+    .dropdown-menu,
+    .btn-group>.dopdown-menu>.dopdown-menu.inner
+        background-color: $secondary
+        max-width: 16em
+        padding: 0
+        border-radius: 0 !important
+        focus-entry()
+            background: $tertiary-low !important
+        & &
+            margin-top: -1px
+        &::before, &::after
+            display: none !important
+        >li.active, >li.selected, >li.dropdown-submenu:hover
+            >a, >.dropdownentry
+                focus-entry()
+        >li.dropdown-submenu>a
+            padding-right: 18px !important
+            &::after
+                position: absolute !important
+                border-left-color: $primary
+                top: 50% !important
+                right: 0 !important
+                transform: translate(-15px, -10px)
+        >li
+            position: relative
+            display: flex
+            align-items: baseline
+            margin: 0
+            cursor: pointer
+            outline: none
+            flex: 1 0 auto
+            box-sizing: border-box
+            justify-content: flex-start
+            padding: 0
+            &.divider
+                height: 1px
+                background: $primary-low
+                border: none
+                margin: 0.2em 0
+            >a, >.dropdownentry
+                color: inherit !important
+                margin: 0
+                display: inline-block
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+                flex-grow: 1
+                padding: 0.5em !important
+                font-size: inherit
+                &:hover, &:focus
+                    focus-entry()
+    /* HEADER */
+    .page-header
+        background-color: $header_background
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25)
+        margin: 0 0 30px
+        border: none
+        position: sticky
+        z-index: 1000
+        top: 30px
+        display: flex
+        gap: 20px
+        padding: 10px
+        align-items: center
+        @media (min-width: 1200px)
+            padding: unquote("10px max(10px, calc(50vw - 1110px/2))")
+    .page-header .site-logo
+        margin: 0
+    .page-header .site-logo > img
+        icon-mono()
+        width: auto
+        max-height: 60px
+    .page-header .site-title
+        display: flex
+        flex-wrap: wrap
+        align-items: baseline
+        gap: 0 20px
+        margin: 0
+    .page-header .site-title>strong
+        line-height: unset !important
+    .page-header .site-title a
+        color: $tertiary
+    /* CONTENT */
+    @media (min-width: 1200px)
+        .container
+            width: 100%
+    .row
+        margin: 0
+        display: flex
+        gap: 30px
+        justify-content: center
+    .row:last-child
+        display: unset
+    /* one-column layout */
+    .row>.span10
+        max-width: 1110px
+        margin: 0
+        flex-grow: 1
+        flex-shrink: 1
+    /* right column */
+    .row>.span9
+        max-width: 1110px
+        margin: 0
+        flex-shrink: 1
+        flex-grow: 1
+    /* left aside column */
+    .row>.span3
+        margin: 0
+        flex-shrink: 0
+    #scrollspy-container
+        position: fixed
+        top: 50% !important
+        transform: translateY(-50%)
+        max-width: 220px
+    #scrollspy
+        width: 220px
+        background: $secondary
+        >li>a
+            text-shadow: none
+            color: $primary
+            border-color: $primary-low
+        >li:hover>a
+            color: $quaternary
+            background: $quaternary-low
+        >li.active>a
+            color: $secondary
+            background: $quaternary
+    @media (min-width: 1200px)
+        #scrollspy-container
+            max-width: 270px
+        #scrollspy
+            width: 228px
+    @media (min-width: 768px) and (max-width: 979px)
+        #scrollspy-container
+            max-width: 166px
+        #scrollspy
+            width: 166px
+    .accordion-group
+        border-radius: 0
+        border: none
+    .accordion-heading
+        border-bottom: 3px solid $primary-low
+    .accordion-body.in
+        border: none !important
+    .accordion-body.collapse.in
+        overflow: hidden
+    tbody>tr
+        border-bottom: 1px solid $primary-low
+    tbody>tr>td,
+    tbody>tr>th
+        background-color: transparent !important
+        border: none !important
+    .table-bordered
+        border: 1px solid $primary-low
+    a[href]:not(.btn)
+        color: $tertiary
+    a[href]:not(.btn):hover,
+    a[href]:not(.btn):focus
+        color: $tertiary-hover
+    td.name-cell>img
+        filter: invert(1) brightness(60%)
+        icon-mono()
+    .text-muted
+        color: $primary-low-mid
+    /* WIDGETS */
+    .progress
+        background: $primary-low !important
+        box-shadow: none
+    .label,
+    .message
+        color: $primary
+        shadow-under-text()
+    .bar-success,
+    .label-success
+        color: $success-low !important
+        background: $success !important
+    .bar-warning,
+    .label-warning,
+    .btn-warning
+        color: $warning-low !important
+        background: $warning !important
+    .bar-important,
+    .label-important,
+    .btn-important,
+    .bar-danger,
+    .label-danger,
+    .btn-danger
+        color: $danger-low !important
+        background: $danger !important
+    .message
+        color: $tertiary
+        border-color: $tertiary
+        background: $tertiary-low
+    .alert
+        shadow-under-text()
+    .message a[href],
+    .alert a[href]
+        text-decoration: underline
+    .alert-success
+        color: $success
+        border-color: $success
+        background: $success-low
+    .news-readmore
+        cursor: pointer
+        user-select: none
+    .btn
+        border-radius: 0 !important
+        box-shadow: none !important
+        box-shadow: none
+        text-shadow: none
+        border: 1px solid transparent
+        font-size: $font-0 !important
+        line-height: normal !important
+        box-sizing: border-box !important
+        padding: .5em .65em !important
+        display: inline-flex !important
+        align-items: center !important
+        justify-content: center !important
+        margin: 0 !important
+        font-weight: normal !important
+        color: $primary
+        background: $primary-low
+        cursor: pointer !important
+        transition: all 0.25s !important
+        >.caret
+            border-top-color: $primary
+            transition: border-top-color 0.25s !important
+        &:hover, &:focus
+            color: $secondary
+            background: $primary-medium
+            >.caret
+                border-top-color: $secondary
+    .btn-group
+        font-size: inherit
+    .btn-group.open .btn.dropdown-toggle
+        background: $primary-medium
+        &.btn-success
+            background: $success-low
+    .btn-small
+        font-size: $font-down-2 !important
+    a>i
+        icon-mono()
+    a.btn:hover>i,
+    a.btn:focus>i
+        icon-mono-hover()
+    .btn-success
+        color: $success
+        background: $success-low
+        &:hover, &:focus
+            color: $secondary
+            background: $success-hover
+    .round-button
+        color: $primary
+        border-color: $primary
+        background: transparent
+    .thumbnail
+        border-color: $primary
+@-moz-document regexp("https://cms.sic.saarland/prog.+/kNobelpreis")
+    #knobelranking
+        background: $secondary
+        border: 1px solid $secondary-low
+        color: $primary
+        >li
+            border-bottom-color: $secondary-low
+        .score
+            background: $primary-low
+        .achieved
+            background: $tertiary
+@-moz-document regexp("https://cms.sic.saarland/[\w-]+/termine/calendar/index")
+    .Calendar
+        .fc-header tr
+            border-bottom: none
+        .fc-button
+            border-radius: 0 !important
+            box-shadow: none
+            text-shadow: none
+            border: 1px solid transparent
+            font-size: $font-0 !important
+            line-height: normal !important
+            box-sizing: border-box !important
+            padding: .5em .65em !important
+            display: inline-flex !important
+            align-items: center !important
+            justify-content: center !important
+            margin: 0 !important
+            font-weight: normal !important
+            color: $primary !important
+            background: $primary-low
+            transition: all 0.25s !important
+            height: unset
+            &:not(.fc-corner-left)
+                border-left: 1px solid $secondary-medium
+            &:hover, &:focus
+                &:not(.fc-state-disabled)
+                    color: $secondary !important
+                    background: $primary-medium
+                    cursor: pointer
+        .fc-button-prev, .fc-button-next
+            height: 35px
+        .fc-day-header
+            border: none !important
+            background: $secondary-high
+            border-right: 1px solid $secondary !important
+            border-bottom: 4px solid $secondary !important
+        .fc-event
+            border-color: transparent !important
+            shadow-under-text()
+            &.Blue
+                color: $tertiary-low !important
+                background: $tertiary
+            &.Green
+                color: $success-low !important
+                background: $success
+            &.Orange
+                color: $warning-low !important
+                background: $warning
+            &.Red
+                color: $danger-low !important
+                background: $danger
