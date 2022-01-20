@@ -523,11 +523,10 @@
         border: none !important
     .table-bordered
         border: 1px solid $primary-low
-    a[href]:not(.btn)
+    a[href]:not(.btn), .btn-link
         color: $tertiary
-    a[href]:not(.btn):hover,
-    a[href]:not(.btn):focus
-        color: $tertiary-hover
+        &:hover, &:focus
+            color: $tertiary-hover
     td.name-cell>img
         filter: invert(1) brightness(60%)
         icon-mono()
