@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<filter id="dark">
+    <feFlood flood-color="#c14924" flood-opacity="1"/>
+    <feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+<filter id="light">
+    <feFlood flood-color="#e45735" flood-opacity="1"/>
+    <feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+</svg>
