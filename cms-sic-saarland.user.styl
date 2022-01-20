@@ -13,6 +13,11 @@
     "Dark": "true",
     "Light": "false"
 }
+@var select owl-style-name "Owl" {
+    "Monochrome": "'mono'",
+    "Colored": "'default'",
+    "🏳️‍🌈": "'rgb'"
+}
 ==/UserStyle==*/
 
 @-moz-document domain("cms.sic.saarland")
@@ -247,6 +252,21 @@
             filter: grayscale(1) contrast(50%) brightness(50%)
         else
             filter: grayscale(1) contrast(50%) brightness(260%)
+    if owl-style-name == "mono"
+        owl-style()
+            icon-mono()
+    else if owl-style-name == "default"
+        owl-style()
+            transition: filter 0.25s !important
+    else if owl-style-name == "rgb"
+        @keyframes rgb-owl
+            from
+                filter: hue-rotate(0deg) brightness(150%)
+            to
+                filter: hue-rotate(360deg) brightness(150%)
+        owl-style()
+            transition: filter 0.25s !important
+            animation: 4s linear infinite running rgb-owl
     html
         color: $primary
         font-family: $font-family
@@ -418,7 +438,7 @@
     .page-header .site-logo
         margin: 0
     .page-header .site-logo > img
-        icon-mono()
+        owl-style()
         width: auto
         max-height: 60px
     .page-header .site-title
