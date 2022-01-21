@@ -52,8 +52,23 @@ $line-height-large = 1.4
 $heading-font-family = Arial, sans-serif
 $font-family = Arial, sans-serif
 
+tint-filter-url($color, $id)
+    'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="' + $id + '" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB"><feFlood result="f" flood-color="' + $color + '" flood-opacity="1"/><feComposite in="f" in2="SourceGraphic" operator="in"/></filter></svg>'
+
+urlembed($url, $append)
+    $url = replace(' ', '%20', $url)
+    $url = replace('"', '%22', $url)
+    $url = 'url("' + replace('#', '%23', $url) + $append + '")'
+    unquote($url)
+
+// Tints the entire element in the specified color
+tint-filter($color)
+    urlembed(tint-filter-url($color, "x"), "#x")
+
+$tint-white-filter = tint-filter(#fff)
+
 if theme-dark
-    /* dark */
+    // DARK
     $primary = #ddd
     $secondary = #222
     $tertiary = #0f82af
@@ -242,122 +257,43 @@ shadow-under-text()
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
 icon-mono()
     transition: filter 0.25s !important
-    if theme-dark
-        filter: grayscale(1) contrast(50%) brightness(230%)
-    else
-        filter: grayscale(1) contrast(50%)
+    filter: $tint-white-filter brightness(lightness($primary))
 icon-mono-hover()
-    if theme-dark
-        filter: grayscale(1) contrast(50%) brightness(50%)
-    else
-        filter: grayscale(1) contrast(50%) brightness(260%)
-
-@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/(?!forum).*")
-    if owl-style-name == "mono"
-        owl-style()
-            icon-mono()
-    else if owl-style-name == "default"
-        owl-style()
-            transition: filter 0.25s !important
-    else if owl-style-name == "rgb"
-        @keyframes rgb-owl
-            from
-                filter: hue-rotate(0deg) brightness(150%)
-            to
-                filter: hue-rotate(360deg) brightness(150%)
-        owl-style()
-            transition: filter 0.25s !important
-            animation: 4s linear infinite running rgb-owl
+    filter: $tint-white-filter brightness(lightness($secondary))
+if owl-style-name == "mono"
+    owl-style()
+        icon-mono()
+else if owl-style-name == "default"
+    owl-style()
+        transition: filter 0.25s !important
+else if owl-style-name == "rgb"
+    @keyframes rgb-owl
+        from
+            filter: hue-rotate(0deg) brightness(150%)
+        to
+            filter: hue-rotate(360deg) brightness(150%)
+    owl-style()
+        transition: filter 0.25s !important
+        animation: 4s linear infinite running rgb-owl
+@-moz-document domain("cms.sic.saarland")
     html
-        color: $primary
+        color: $primary !important
         font-family: $font-family
         font-size: $base-font-size
         line-height: $line-height-large
-        background-color: $secondary
+        background-color: $secondary !important
         overflow-y: scroll
         direction: ltr
     body
-        color: inherit
-        font-size: inherit
-        line-height: inherit
-        background: inherit
-        padding-left: 0
+        color: $primary !important
+        font-family: $font-family !important
+        font-size: $base-font-size
+        line-height: $line-height-large !important
+        background: transparent !important
+        padding-left: 0 !important
         margin-top: -10px
         @media (max-width: 767px)
             padding-right: 0
-    /* NAV */
-    .navbar, .user-login
-        background: $secondary !important
-        width: 100%
-        z-index: 1200
-        position: fixed
-        top: 0
-        right: 0
-    .user-login
-        padding: 2px 0
-        height: 26px
-        display: flex
-        justify-content: flex-end
-        align-items: baseline
-        @media (min-width: 1200px)
-            max-width: 1110px
-            padding: unquote("2px max(10px, calc(50vw - 1110px/2))")
-    .navbar-inner
-        background: inherit !important
-        border: none !important
-        color: $primary
-        box-shadow: none !important
-        min-height: unset
-        max-width: 1110px
-        margin: 0 auto
-    .navbar .brand,
-    .navbar button
-        font-size: $font-up-1
-        line-height: $line-height-small
-        box-sizing: border-box
-        min-height: 30px
-        padding: 6px 12px !important
-        margin: 0
-        color: inherit !important
-    .navbar .brand
-        margin-left: -10px
-    .navbar .brand:hover,
-    .navbar .pull-right.nav:hover
-        color: $quaternary !important
-        background-color: $quaternary-low !important
-    .navbar .nav
-        margin: 0px
-        list-style: none
-        padding: 0
-        .caret
-            align-self: start
-            margin-top: 7px !important
-            border-top-color: $primary !important
-    .navbar .nav>li
-        display: flex
-        float: left
-        margin-right: 0.5em
-        list-style: none
-        &.active>a
-            box-shadow: none
-            background: $secondary-very-high !important
-        &>a
-            border: none
-            padding: 6px 12px
-            color: $primary !important
-            background: none !important
-            font-size: $font-up-1 !important
-            line-height: $line-height-small !important
-            box-sizing: border-box
-            min-height: 30px
-            display: flex
-            align-items: center
-            transition: background 0.15s
-            &:hover
-                color: $quaternary !important
-                background-color: $quaternary-low !important
-    .navbar .nav a:hover>.caret
-        border-top-color: $quaternary !important
     /* DROPDOWN */
     .dropdown.open>.dropdown-menu,
     .btn-group.open>.dropdown-menu.open
@@ -421,6 +357,183 @@ icon-mono-hover()
                 font-size: inherit
                 &:hover, &:focus
                     focus-entry()
+    /* CONTENT */
+    a[href]:not(.btn), .btn-link
+        color: $tertiary
+        &:hover, &:focus
+            color: $tertiary-hover
+    /* WIDGETS */
+    .progress
+        background: $primary-low !important
+        box-shadow: none
+    .label,
+    .message
+        color: $primary
+        shadow-under-text()
+    .bar-success,
+    .label-success
+        color: $success-low !important
+        background: $success !important
+    .bar-warning,
+    .label-warning,
+    .btn-warning
+        color: $warning-low !important
+        background: $warning !important
+    .bar-important,
+    .label-important,
+    .btn-important,
+    .bar-danger,
+    .label-danger,
+    .btn-danger
+        color: $danger-low !important
+        background: $danger !important
+    .message
+        color: $tertiary
+        border-color: $tertiary
+        background: $tertiary-low
+    .alert
+        shadow-under-text()
+    .message a[href],
+    .alert a[href]
+        text-decoration: underline
+    .alert-success
+        color: $success
+        border-color: $success
+        background: $success-low
+    .news-readmore
+        cursor: pointer
+        user-select: none
+    declare-btn-style($btn-text, $btn-bg, $btn-hover)
+        color: $btn-text
+        background: $btn-bg
+        >.caret
+            border-top-color: $btn-text
+            border-bottom-color: $btn-text
+        &:hover, &:focus
+            background: $btn-hover
+    .btn
+        declare-btn-style($primary, $primary-low, $primary-medium)
+        border-radius: 0 !important
+        box-shadow: none !important
+        text-shadow: none
+        border: 1px solid transparent
+        font-size: $font-0 !important
+        line-height: normal !important
+        box-sizing: border-box !important
+        padding: .5em .65em !important
+        display: inline-flex !important
+        align-items: center !important
+        justify-content: center !important
+        margin: 0 !important
+        font-weight: normal !important
+        cursor: pointer !important
+        transition: all 0.25s !important
+        >.caret
+            border-top-color: $primary
+            border-bottom-color: $primary
+            transition: border-top-color 0.25s !important
+        &:hover, &:focus
+            color: $secondary
+            >.caret
+                border-top-color: $secondary
+                border-bottom-color: $secondary
+    .btn-group
+        font-size: inherit
+    .btn-group.open .btn.dropdown-toggle
+        background: $primary-medium
+        &.btn-success
+            background: $success-low
+    .btn-small
+        font-size: $font-down-2 !important
+    .btn-success
+        declare-btn-style($success, $success-low, $success-hover)
+    a>i
+        icon-mono()
+    a.btn:hover>i,
+    a.btn:focus>i
+        icon-mono-hover()
+    .round-button
+        color: $primary
+        border-color: $primary
+        background: transparent
+@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/(?!forum).*")
+    /* NAV */
+    .navbar, .user-login
+        background: $secondary !important
+        width: 100%
+        z-index: 1200
+        position: fixed
+        top: 0
+        right: 0
+    .user-login
+        padding: 2px 0
+        height: 26px
+        display: flex
+        justify-content: flex-end
+        align-items: baseline
+        @media (min-width: 1200px)
+            max-width: 1110px
+            padding: unquote("2px max(10px, calc(50vw - 1110px/2))")
+    .navbar-inner
+        background: inherit !important
+        border: none !important
+        color: $primary
+        box-shadow: none !important
+        min-height: unset
+        max-width: 1110px
+        margin: 0 auto
+    .navbar
+        .brand, button
+            font-size: $font-up-1
+            line-height: $line-height-small
+            box-sizing: border-box
+            min-height: 30px
+            padding: 6px 12px !important
+            margin: 0
+            color: inherit !important
+            transition: background 0.15s
+            text-decoration: none !important
+        .brand
+            margin-left: -10px
+            margin-right: 0.5em
+        .brand, .pull-right.nav
+            &:hover, &:focus
+                color: $quaternary !important
+                background-color: $quaternary-low !important
+        .nav
+            margin: 0px
+            list-style: none
+            padding: 0
+        .nav>li
+            display: flex
+            float: left
+            margin-right: 0.5em
+            list-style: none
+            &.active>a
+                box-shadow: none
+                background: $secondary-very-high !important
+            &>a
+                border: none
+                padding: 6px 12px
+                color: $primary !important
+                background: none !important
+                font-size: $font-up-1 !important
+                line-height: $line-height-small !important
+                box-sizing: border-box
+                min-height: 30px
+                display: flex
+                align-items: center
+                transition: background 0.15s
+                >.caret
+                    align-self: start
+                    margin-top: 7px !important
+                    border-top-color: $primary !important
+                    border-bottom-color: $primary !important
+                &:hover, &:focus
+                    color: $quaternary !important
+                    background-color: $quaternary-low !important
+                    >.caret
+                        border-top-color: $quaternary !important
     /* HEADER */
     .page-header
         background-color: $header_background
@@ -524,105 +637,11 @@ icon-mono-hover()
         border: none !important
     .table-bordered
         border: 1px solid $primary-low
-    a[href]:not(.btn), .btn-link
-        color: $tertiary
-        &:hover, &:focus
-            color: $tertiary-hover
     td.name-cell>img
         filter: invert(1) brightness(60%)
         icon-mono()
     .text-muted
         color: $primary-low-mid
-    /* WIDGETS */
-    .progress
-        background: $primary-low !important
-        box-shadow: none
-    .label,
-    .message
-        color: $primary
-        shadow-under-text()
-    .bar-success,
-    .label-success
-        color: $success-low !important
-        background: $success !important
-    .bar-warning,
-    .label-warning,
-    .btn-warning
-        color: $warning-low !important
-        background: $warning !important
-    .bar-important,
-    .label-important,
-    .btn-important,
-    .bar-danger,
-    .label-danger,
-    .btn-danger
-        color: $danger-low !important
-        background: $danger !important
-    .message
-        color: $tertiary
-        border-color: $tertiary
-        background: $tertiary-low
-    .alert
-        shadow-under-text()
-    .message a[href],
-    .alert a[href]
-        text-decoration: underline
-    .alert-success
-        color: $success
-        border-color: $success
-        background: $success-low
-    .news-readmore
-        cursor: pointer
-        user-select: none
-    .btn
-        border-radius: 0 !important
-        box-shadow: none !important
-        text-shadow: none
-        border: 1px solid transparent
-        font-size: $font-0 !important
-        line-height: normal !important
-        box-sizing: border-box !important
-        padding: .5em .65em !important
-        display: inline-flex !important
-        align-items: center !important
-        justify-content: center !important
-        margin: 0 !important
-        font-weight: normal !important
-        color: $primary
-        background: $primary-low
-        cursor: pointer !important
-        transition: all 0.25s !important
-        >.caret
-            border-top-color: $primary
-            transition: border-top-color 0.25s !important
-        &:hover, &:focus
-            color: $secondary
-            background: $primary-medium
-            >.caret
-                border-top-color: $secondary
-    .btn-group
-        font-size: inherit
-    .btn-group.open .btn.dropdown-toggle
-        background: $primary-medium
-        &.btn-success
-            background: $success-low
-    .btn-small
-        font-size: $font-down-2 !important
-    a>i
-        icon-mono()
-    a.btn:hover>i,
-    a.btn:focus>i
-        icon-mono-hover()
-    .btn-success
-        color: $success
-        background: $success-low
-        &:hover, &:focus
-            color: $secondary
-            background: $success-hover
-    .round-button
-        color: $primary
-        border-color: $primary
-        background: transparent
     .thumbnail
         border-color: $primary
 @-moz-document regexp("https://cms.sic.saarland/[\\w-]+/[^/]+/kNobelpreis")
@@ -687,3 +706,182 @@ icon-mono-hover()
             &.Red
                 color: $danger-low !important
                 background: $danger
+@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/forum/.*")
+    body
+        padding: 0 !important
+        margin: 0 !important
+    /* NAV */
+    .navbar-fixed-top
+        order: 0
+        display: flex
+        width: 100%
+        justify-content: center
+        background: $secondary
+        color: $primary
+        font-size: $font-up-1
+        line-height: $line-height-small
+        margin: 0
+        position: static
+        >.navbar-inner
+            flex-grow: 1
+            max-width: 1110px
+            background: transparent
+            box-shadow: none
+            min-height: 30px
+            padding: 0
+        .brand
+            margin: 0
+            color: inherit
+            font-weight: normal
+            text-decoration: none !important
+        .container-fluid
+            padding: 0
+        .container-fluid>.btn-group
+            padding: 0
+        .brand,
+        .container-fluid>.btn-group>.btn
+            font-size: 1em
+            line-height: $line-height-small
+            box-sizing: border-box
+            min-height: 30px
+            padding: 6px 12px !important
+            margin: 0
+            color: inherit !important
+            background: transparent !important
+            transition: background 0.15s
+            height: 30px
+            >.caret
+                border-top-color: $primary
+            &:hover, &:focus
+                color: $quaternary !important
+                background-color: $quaternary-low !important
+                >.caret
+                    border-top-color: $quaternary !important
+        .container-fluid>.linklist
+            display: flex
+            flex-wrap: wrap
+            margin-left: 0.5em
+            >.divider-vertical
+                display: none
+            >li>a
+                height: 18px
+            >*
+                display: flex
+                float: left
+                margin: 0
+                margin-right: 0.5em
+                list-style: none
+                align-self: baseline
+                &.active>a
+                    box-shadow: none
+                    background: $secondary-very-high !important
+                &>a
+                    border: none
+                    padding: 6px 12px
+                    color: $primary !important
+                    background: none !important
+                    font-size: inherit
+                    line-height: $line-height-small !important
+                    box-sizing: border-box
+                    min-height: 30px
+                    display: flex
+                    gap: 4px
+                    transition: background 0.15s
+                    >.caret
+                        align-self: start
+                        margin-top: 7px !important
+                        border-top-color: $primary !important
+                        border-bottom-color: $primary !important
+                    &:hover, &:focus
+                        color: $quaternary !important
+                        background-color: $quaternary-low !important
+                        >.caret
+                            border-top-color: $quaternary !important
+                        >i
+                            filter: tint-filter($quaternary)
+    #adv-search
+        margin: 0
+        padding: 6px 10px 6px 12px
+        height: 18px
+        display: flex
+        transition: background 0.15s
+        &:hover, &:focus
+            background-color: $quaternary-low
+            text-decoration: none !important
+            i
+                filter: tint-filter($quaternary)
+    #search
+        margin: 0
+        align-self: stretch
+        height: 30px
+        input
+            box-shadow: none
+            text-shadow: none
+            color: inherit
+            border-radius: 0
+            border: 0
+            height: 18px
+            padding: 6px 12px
+            background: $secondary-very-high
+            &:focus
+                background: $secondary-high
+    /* HEADER */
+    .headerbar
+        display: flex
+        flex-direction: column
+        background-color: $header_background
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25)
+        margin: 0 0 30px
+        padding: 0
+        border: none
+        >.row-fluid
+            order: 2
+            margin: 0
+            padding: 10px
+            align-items: center
+            @media (min-width: 1200px)
+                padding: unquote("10px max(10px, calc(50vw - 1110px/2))")
+        #site-description
+            display: grid
+            grid-template-columns: 60px auto
+            grid-template-rows: auto
+            grid-template-areas: "logo title" "logo subtitle"
+            gap: 0 20px
+            margin: 0
+            width: 100%
+            >h1
+                display: inline
+                padding: 0 !important
+                grid-area: title
+                >a
+                    line-height: unset !important
+                    font-size: 38.5px
+            >p
+                grid-area: subtitle
+                font-size: 24.5px
+                margin: 0
+        #logo
+            grid-area: logo
+            align-self: center
+            float: none
+            margin: 0
+            padding: 0
+            owl-style()
+            /* Higher quality image */
+            background: url('/system/theme/Sic/img/logo.png')
+            background-size: cover
+            >img
+                width: auto
+                max-width: unset
+                max-height: 60px
+                opacity: 0
+    /* CONTENT */
+    body > .container-fluid
+        padding: 0
+    a:hover
+        text-decoration: underline
+    .icon-white
+        background-image: url('styles/proboot/theme/images/glyphicons-halflings.png')
+    /* WIDGETS */
+    .btn > .caret
+        margin-top: 0
