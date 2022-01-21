@@ -994,6 +994,12 @@ else if owl-style-name == "rgb"
         width: 100%
         .row-fluid
             width: auto !important
+    #page-header>.row-fluid
+        max-width: 1110px !important
+        margin-left: auto
+        margin-right: auto
+        @media (max-width: 1110px)
+            max-width: calc(100% - 22px) !important
     a:hover
         text-decoration: underline
     th, td
