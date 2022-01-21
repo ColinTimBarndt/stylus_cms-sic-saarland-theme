@@ -442,9 +442,14 @@ else if owl-style-name == "rgb"
                 border-bottom-color: $secondary
     .btn-group
         font-size: inherit
-        display: flex
         .btn:not(:first-child)
             margin-left: 4px !important
+    .input-append
+        >.btn-group
+            margin-left: 0
+            z-index: 1
+        .input-mini, select
+            z-index: 2
     .btn-group.open .btn.dropdown-toggle
         background: $primary-medium
         &.btn-success
@@ -683,6 +688,21 @@ else if owl-style-name == "rgb"
     hr
         border-top: 1px solid $primary-low
         border-bottom: 1px solid $primary-low
+    .input-mini
+        border: 1px solid $primary-medium !important
+        height: 19px !important
+        box-shadow: none !important
+        border-radius: 0 !important
+        padding: 0.5em 0.65em !important
+        color: $primary !important
+        cursor: text
+        background: $secondary !important
+        transition: background 0.15s !important
+        &:hover
+            border: 1px solid $primary-medium
+        &:focus
+            outline: 3px solid $tertiary !important
+            outline-offset: -1px
 @-moz-document regexp("https://cms.sic.saarland/[\\w-]+/[^/]+/kNobelpreis")
     #knobelranking
         background: $secondary
