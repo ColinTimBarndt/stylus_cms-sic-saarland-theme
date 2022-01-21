@@ -642,12 +642,12 @@ else if owl-style-name == "rgb"
         border: none !important
     .accordion-body.collapse.in
         overflow: hidden
-    tbody>tr
+    table:not([class^="fc"])>tbody>tr
         border-bottom: 1px solid $primary-low
-    tbody>tr>td,
-    tbody>tr>th
+        td, th
+            border: none !important
+    td, th
         background-color: transparent !important
-        border: none !important
     .table-bordered
         border: 1px solid $primary-low
     td.name-cell>img
@@ -700,18 +700,20 @@ else if owl-style-name == "rgb"
         .fc-button-prev, .fc-button-next
             height: 35px
         .fc-day-header
-            border: none !important
             background: $secondary-high
             border-right: 1px solid $secondary !important
             border-bottom: 4px solid $secondary !important
         .fc-widget-header
-            background: $secondary-high
+            background: $secondary-high !important
             border-color: $secondary
-            border-top: none
-            border-bottom: 1px solid $secondary
+            &:last-child, &:first-child
+                background: none !important
         .fc-widget-content
-            border-top: 1px solid white !important
-            margin-top: -1px
+            border-color: $primary-low
+        .fc-widget-header .fc-agenda-divider-inner
+            background: $primary-low
+        .fc-agenda-slots td
+            border-color: $primary-low !important
         .fc-event
             border-color: transparent !important
             outline: 1px solid $secondary
