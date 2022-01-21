@@ -457,10 +457,10 @@ else if owl-style-name == "rgb"
         declare-btn-style($success, $success-low, $success-hover)
     .btn-danger, .btn-important
         declare-btn-style($danger, $danger-low, $danger-hover)
-    a>i
+    a>i, .btn>i
         icon-mono()
-    a.btn:hover>i,
-    a.btn:focus>i
+    .btn:hover>i,
+    .btn:focus>i
         icon-mono-hover()
     .round-button
         color: $primary
