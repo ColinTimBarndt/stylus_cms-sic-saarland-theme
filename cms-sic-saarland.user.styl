@@ -678,8 +678,9 @@ else if owl-style-name == "rgb"
         background: $secondary
         border-radius: 0px
         &>.btn-primary
-            color: $secondary
-            background: $success-hover
+            declare-btn-style($success, $success-low, $success-hover)
+            &:hover, &:focus
+                color: $secondary
     .form-modal
         background: $header_background
         border: none
