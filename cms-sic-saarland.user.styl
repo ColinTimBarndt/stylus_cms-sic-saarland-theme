@@ -688,9 +688,10 @@ else if owl-style-name == "rgb"
     hr
         border-top: 1px solid $primary-low
         border-bottom: 1px solid $primary-low
-    .input-mini
+    input[type=text], input[type=password]
         border: 1px solid $primary-medium !important
-        height: 19px !important
+        box-sizing: border-box
+        height: 35px !important
         box-shadow: none !important
         border-radius: 0 !important
         padding: 0.5em 0.65em !important
@@ -703,6 +704,8 @@ else if owl-style-name == "rgb"
         &:focus
             outline: 3px solid $tertiary !important
             outline-offset: -1px
+    #UserLoginForm.dropdown-menu input[type=password]
+        margin-left: 6px !important
 @-moz-document regexp("https://cms.sic.saarland/[\\w-]+/[^/]+/kNobelpreis")
     #knobelranking
         background: $secondary
