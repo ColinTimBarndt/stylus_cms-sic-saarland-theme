@@ -681,7 +681,7 @@ else if owl-style-name == "rgb"
             declare-btn-style($success, $success-low, $success-hover)
             &:hover, &:focus
                 color: $secondary
-    .form-modal
+    .form-modal, .modal
         background: $header_background
         border: none
     .close
@@ -707,6 +707,11 @@ else if owl-style-name == "rgb"
             outline-offset: -1px
     #UserLoginForm.dropdown-menu input[type=password]
         margin-left: 6px !important
+    button.close
+        text-shadow: none
+        opacity: 1 !important
+        &:hover, &:focus
+            color: $danger-hover !important
 @-moz-document regexp("https://cms.sic.saarland/[\\w-]+/[^/]+/kNobelpreis")
     #knobelranking
         background: $secondary
