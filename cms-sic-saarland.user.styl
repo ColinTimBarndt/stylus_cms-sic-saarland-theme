@@ -20,262 +20,266 @@
 }
 ==/UserStyle==*/
 
-/* font */
-$base-font-size-smallest = 0.815em
-$base-font-size-smaller = 0.875em
-$base-font-size = 0.938em
-$base-font-size-larger = 1.063em
-$base-font-size-largest = 1.118em
-$font-up-6 = 2.296em
-$font-up-5 = 2em
-$font-up-4 = 1.7511em
-$font-up-3 = 1.5157em
-$font-up-2 = 1.3195em
-$font-up-1 = 1.1487em
-$font-0 = 1em
-$font-down-1 = 0.8706em
-$font-down-2 = 0.7579em
-$font-down-3 = 0.6599em
-$font-down-4 = 0.5745em
-$font-down-5 = 0.5em
-$font-down-6 = 0.4355em
-$font-up-3-rem = 1.5157rem
-$font-up-2-rem = 1.3195rem
-$font-up-1-rem = 1.1487rem
-$font-0-rem = 1rem
-$font-down-1-rem = 0.8706rem
-$font-down-2-rem = 0.7579rem
-$font-size-ios-input = 1.07em
-$line-height-small = 1
-$line-height-medium = 1.2
-$line-height-large = 1.4
-$heading-font-family = Arial, sans-serif
-$font-family = Arial, sans-serif
+@-moz-document domain("cms.sic.saarland"),
+               domain("cms.saarland-informatics-campus.de")
+    /* font */
+    $base-font-size-smallest = 0.815em
+    $base-font-size-smaller = 0.875em
+    $base-font-size = 0.938em
+    $base-font-size-larger = 1.063em
+    $base-font-size-largest = 1.118em
+    $font-up-6 = 2.296em
+    $font-up-5 = 2em
+    $font-up-4 = 1.7511em
+    $font-up-3 = 1.5157em
+    $font-up-2 = 1.3195em
+    $font-up-1 = 1.1487em
+    $font-0 = 1em
+    $font-down-1 = 0.8706em
+    $font-down-2 = 0.7579em
+    $font-down-3 = 0.6599em
+    $font-down-4 = 0.5745em
+    $font-down-5 = 0.5em
+    $font-down-6 = 0.4355em
+    $font-up-3-rem = 1.5157rem
+    $font-up-2-rem = 1.3195rem
+    $font-up-1-rem = 1.1487rem
+    $font-0-rem = 1rem
+    $font-down-1-rem = 0.8706rem
+    $font-down-2-rem = 0.7579rem
+    $font-size-ios-input = 1.07em
+    $line-height-small = 1
+    $line-height-medium = 1.2
+    $line-height-large = 1.4
+    $heading-font-family = Arial, sans-serif
+    $font-family = Arial, sans-serif
 
-tint-filter-url($color, $id)
-    'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="' + $id + '" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB"><feFlood result="f" flood-color="' + $color + '" flood-opacity="1"/><feComposite in="f" in2="SourceGraphic" operator="in"/></filter></svg>'
+    tint-filter-url($color, $id)
+        'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><filter id="' + $id + '" x="0%" y="0%" width="100%" height="100%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB"><feFlood result="f" flood-color="' + $color + '" flood-opacity="1"/><feComposite in="f" in2="SourceGraphic" operator="in"/></filter></svg>'
 
-urlembed($url, $append)
-    $url = replace(' ', '%20', $url)
-    $url = replace('"', '%22', $url)
-    $url = 'url("' + replace('#', '%23', $url) + $append + '")'
-    unquote($url)
+    urlembed($url, $append)
+        $url = replace('%', '%25', $url)
+        $url = replace(' ', '%20', $url)
+        $url = replace('"', '%22', $url)
+        $url = replace('#', '%23', $url)
+        $url = 'url("' + $url + $append + '")'
+        unquote($url)
 
-// Tints the entire element in the specified color
-tint-filter($color)
-    urlembed(tint-filter-url($color, "x"), "#x")
+    // Tints the entire element in the specified color
+    tint-filter($color)
+        urlembed(tint-filter-url($color, "x"), "#x")
 
-$tint-white-filter = tint-filter(#fff)
+    $tint-white-filter = tint-filter(#fff)
 
-if theme-dark
-    // DARK
-    $primary = #ddd
-    $secondary = #222
-    $tertiary = #0f82af
-    $quaternary = #c14924
-    $header_background = #111
-    $header_primary = #ddd
-    $highlight = #a87137
-    $danger = #e45735
-    $warning = #e09a00
-    $success = #1ca551
-    $love = #fa6c8d
-    $always-black-rgb = 0, 0, 0
-    $primary-rgb = 221, 221, 221
-    $primary-low-rgb = 48.62, 48.62, 48.62
-    $secondary-rgb = 34, 34, 34
-    $header_background-rgb = 17, 17, 17
-    $tertiary-rgb = 15, 130, 175
-    $primary-very-low = #282828
-    $primary-low = #313131
-    $primary-low-mid = #7a7a7a
-    $primary-medium = #909090
-    $primary-high = #a6a6a6
-    $primary-very-high = #c7c7c7
-    $header_primary-low = #484848
-    $header_primary-low-mid = #838383
-    $header_primary-medium = #a4a4a4
-    $header_primary-high = #b9b9b9
-    $header_primary-very-high = #d2d2d2
-    $secondary-low = #bdbdbd
-    $secondary-medium = #919191
-    $secondary-high = #646464
-    $secondary-very-high = #313131
-    $tertiary-very-low = #04212c
-    $tertiary-low = #052e3d
-    $tertiary-medium = #084860
-    $tertiary-high = #0b6283
-    $tertiary-hover = #14aeea
-    $quaternary-low = #3a160b
-    $highlight-low = #22170b
-    $highlight-medium = #4c3319
-    $highlight-high = #976632
-    $danger-low = #591b0c
-    $danger-low-mid = rgba(99, 30, 13, 0.7)
-    $danger-medium = #a13116
-    $danger-hover = #c63c1b
-    $warning-low = #5c3f00
-    /* TODO */
-    $success-low = #0b4220
-    $success-medium = #116331
-    $success-hover = #168441
-    $love-low = #8a0524
-    $wiki = green
-    $blend-primary-secondary-5 = #3c3c3c
-    $primary-med-or-secondary-med = #919191
-    $primary-med-or-secondary-high = #646464
-    $primary-high-or-secondary-low = #bdbdbd
-    $primary-low-mid-or-secondary-high = #646464
-    $primary-low-mid-or-secondary-low = #bdbdbd
-    $primary-or-primary-low-mid = #7a7a7a
-    $highlight-low-or-medium = #4c3319
-    $tertiary-or-tertiary-low = #052e3d
-    $tertiary-low-or-tertiary-high = #0b6283
-    $tertiary-med-or-tertiary = #0f82af
-    $secondary-or-primary = #ddd
-    $tertiary-or-white = #fff
-    $facebook-or-white = #fff
-    $twitter-or-white = #fff
-    $hljs-comment = #bba
-    $hljs-number = #aff
-    $hljs-string = #f99
-    $hljs-literal = #9ae
-    $hljs-tag = #99f
-    $hljs-attribute = #0ee
-    $hljs-symbol = #fbe
-    $hljs-bg = #333
-    $google = #fff
-    $google-hover = #f2f2f2
-    $instagram = #e1306c
-    $instagram-hover = #ac194b
-    $facebook = #1877f2
-    $facebook-hover = #0a54b3
-    $cas = #70ba61
-    $twitter = #1da1f2
-    $twitter-hover = #0c85d0
-    $github = #100e0f
-    $github-hover = #463e42
-    $discord = #7289da
-    $discord-hover = #4a67cf
-    $gold = #e7c300
-    $silver = silver
-    $bronze = #cd7f32
-else
-    /* light */
-    $primary = #222
-    $secondary = #fff
-    $tertiary = #08c
-    $quaternary = #e45735
-    $header_background = #fff
-    $header_primary = #333
-    $highlight = #ffff4d
-    $danger = #e45735
-    $warning = #d99500
-    $success = #090
-    $love = #fa6c8d
-    $always-black-rgb = 0, 0, 0
-    $primary-rgb = 34,34,34
-    $primary-low-rgb = 232.9,232.9,232.9
-    $secondary-rgb = 255,255,255
-    $header_background-rgb = 255,255,255
-    $tertiary-rgb = 0,136,204
-    $primary-very-low = #f8f8f8
-    $primary-low = #e9e9e9
-    $primary-low-mid = #bdbdbd
-    $primary-medium = #919191
-    $primary-high = #646464
-    $primary-very-high = #434343
-    $header_primary-low = #f2f2f2
-    $header_primary-low-mid = #d0d0d0
-    $header_primary-medium = #afafaf
-    $header_primary-high = #929292
-    $header_primary-very-high = #5e5e5e
-    $secondary-low = #4d4d4d
-    $secondary-medium = gray
-    $secondary-high = #a6a6a6
-    $secondary-very-high = #ededed
-    $tertiary-very-low = #e0f5ff
-    $tertiary-low = #d1f0ff
-    $tertiary-medium = #6cf
-    $tertiary-high = #0aadff
-    $tertiary-hover = #069
-    $quaternary-low = #f7cdc2
-    $highlight-low = #ffffca
-    $highlight-medium = #ffffa6
-    $highlight-high = #a6a600
-    $danger-low = #fbe6e1
-    $danger-low-mid = rgba(242,171,154,0.7)
-    $danger-medium = #ec8972
-    $danger-hover = #c63c1b
-    $warning-low = #ffefcc
-    /* TODO */
-    $success-low = #b8ffb8
-    $success-medium = #4dff4d
-    $success-hover = #007a00
-    $love-low = #fee9ee
-    $wiki = green
-    $blend-primary-secondary-5 = #f9f9f9
-    $primary-med-or-secondary-med = #919191
-    $primary-med-or-secondary-high = #919191
-    $primary-high-or-secondary-low = #646464
-    $primary-low-mid-or-secondary-high = #bdbdbd
-    $primary-low-mid-or-secondary-low = #bdbdbd
-    $primary-or-primary-low-mid = #222
-    $highlight-low-or-medium = #ffffca
-    $tertiary-or-tertiary-low = #08c
-    $tertiary-low-or-tertiary-high = #d1f0ff
-    $tertiary-med-or-tertiary = #6cf
-    $secondary-or-primary = #fff
-    $tertiary-or-white = #08c
-    $facebook-or-white = #1877f2
-    $twitter-or-white = #1da1f2
-    $hljs-comment = #998
-    $hljs-number = #099
-    $hljs-string = #d14
-    $hljs-literal = #458
-    $hljs-tag = #000080
-    $hljs-attribute = #008080
-    $hljs-symbol = #990073
-    $hljs-bg = #f8f8f8
-    $google = #fff
-    $google-hover = #f2f2f2
-    $instagram = #e1306c
-    $instagram-hover = #ac194b
-    $facebook = #1877f2
-    $facebook-hover = #0a54b3
-    $cas = #70ba61
-    $twitter = #1da1f2
-    $twitter-hover = #0c85d0
-    $github = #100e0f
-    $github-hover = #463e42
-    $discord = #7289da
-    $discord-hover = #4a67cf
-    $gold = #e7c300
-    $silver = silver
-    $bronze = #cd7f32
-shadow-under-text()
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
-icon-mono()
-    transition: filter 0.25s !important
-    filter: $tint-white-filter brightness(lightness($primary))
-icon-mono-hover()
-    filter: $tint-white-filter brightness(lightness($secondary))
-if owl-style-name == "mono"
-    owl-style()
-        icon-mono()
-else if owl-style-name == "default"
-    owl-style()
+    if theme-dark
+        // DARK
+        $primary = #ddd
+        $secondary = #222
+        $tertiary = #0f82af
+        $quaternary = #c14924
+        $header_background = #111
+        $header_primary = #ddd
+        $highlight = #a87137
+        $danger = #e45735
+        $warning = #e09a00
+        $success = #1ca551
+        $love = #fa6c8d
+        $always-black-rgb = 0, 0, 0
+        $primary-rgb = 221, 221, 221
+        $primary-low-rgb = 48.62, 48.62, 48.62
+        $secondary-rgb = 34, 34, 34
+        $header_background-rgb = 17, 17, 17
+        $tertiary-rgb = 15, 130, 175
+        $primary-very-low = #282828
+        $primary-low = #313131
+        $primary-low-mid = #7a7a7a
+        $primary-medium = #909090
+        $primary-high = #a6a6a6
+        $primary-very-high = #c7c7c7
+        $header_primary-low = #484848
+        $header_primary-low-mid = #838383
+        $header_primary-medium = #a4a4a4
+        $header_primary-high = #b9b9b9
+        $header_primary-very-high = #d2d2d2
+        $secondary-low = #bdbdbd
+        $secondary-medium = #919191
+        $secondary-high = #646464
+        $secondary-very-high = #313131
+        $tertiary-very-low = #04212c
+        $tertiary-low = #052e3d
+        $tertiary-medium = #084860
+        $tertiary-high = #0b6283
+        $tertiary-hover = #14aeea
+        $quaternary-low = #3a160b
+        $highlight-low = #22170b
+        $highlight-medium = #4c3319
+        $highlight-high = #976632
+        $danger-low = #591b0c
+        $danger-low-mid = rgba(99, 30, 13, 0.7)
+        $danger-medium = #a13116
+        $danger-hover = #c63c1b
+        $warning-low = #5c3f00
+        /* TODO */
+        $success-low = #0b4220
+        $success-medium = #116331
+        $success-hover = #168441
+        $love-low = #8a0524
+        $wiki = green
+        $blend-primary-secondary-5 = #3c3c3c
+        $primary-med-or-secondary-med = #919191
+        $primary-med-or-secondary-high = #646464
+        $primary-high-or-secondary-low = #bdbdbd
+        $primary-low-mid-or-secondary-high = #646464
+        $primary-low-mid-or-secondary-low = #bdbdbd
+        $primary-or-primary-low-mid = #7a7a7a
+        $highlight-low-or-medium = #4c3319
+        $tertiary-or-tertiary-low = #052e3d
+        $tertiary-low-or-tertiary-high = #0b6283
+        $tertiary-med-or-tertiary = #0f82af
+        $secondary-or-primary = #ddd
+        $tertiary-or-white = #fff
+        $facebook-or-white = #fff
+        $twitter-or-white = #fff
+        $hljs-comment = #bba
+        $hljs-number = #aff
+        $hljs-string = #f99
+        $hljs-literal = #9ae
+        $hljs-tag = #99f
+        $hljs-attribute = #0ee
+        $hljs-symbol = #fbe
+        $hljs-bg = #333
+        $google = #fff
+        $google-hover = #f2f2f2
+        $instagram = #e1306c
+        $instagram-hover = #ac194b
+        $facebook = #1877f2
+        $facebook-hover = #0a54b3
+        $cas = #70ba61
+        $twitter = #1da1f2
+        $twitter-hover = #0c85d0
+        $github = #100e0f
+        $github-hover = #463e42
+        $discord = #7289da
+        $discord-hover = #4a67cf
+        $gold = #e7c300
+        $silver = silver
+        $bronze = #cd7f32
+    else
+        /* light */
+        $primary = #222
+        $secondary = #fff
+        $tertiary = #08c
+        $quaternary = #e45735
+        $header_background = #fff
+        $header_primary = #333
+        $highlight = #ffff4d
+        $danger = #e45735
+        $warning = #d99500
+        $success = #090
+        $love = #fa6c8d
+        $always-black-rgb = 0, 0, 0
+        $primary-rgb = 34,34,34
+        $primary-low-rgb = 232.9,232.9,232.9
+        $secondary-rgb = 255,255,255
+        $header_background-rgb = 255,255,255
+        $tertiary-rgb = 0,136,204
+        $primary-very-low = #f8f8f8
+        $primary-low = #e9e9e9
+        $primary-low-mid = #bdbdbd
+        $primary-medium = #919191
+        $primary-high = #646464
+        $primary-very-high = #434343
+        $header_primary-low = #f2f2f2
+        $header_primary-low-mid = #d0d0d0
+        $header_primary-medium = #afafaf
+        $header_primary-high = #929292
+        $header_primary-very-high = #5e5e5e
+        $secondary-low = #4d4d4d
+        $secondary-medium = gray
+        $secondary-high = #a6a6a6
+        $secondary-very-high = #ededed
+        $tertiary-very-low = #e0f5ff
+        $tertiary-low = #d1f0ff
+        $tertiary-medium = #6cf
+        $tertiary-high = #0aadff
+        $tertiary-hover = #069
+        $quaternary-low = #f7cdc2
+        $highlight-low = #ffffca
+        $highlight-medium = #ffffa6
+        $highlight-high = #a6a600
+        $danger-low = #fbe6e1
+        $danger-low-mid = rgba(242,171,154,0.7)
+        $danger-medium = #ec8972
+        $danger-hover = #c63c1b
+        $warning-low = #ffefcc
+        /* TODO */
+        $success-low = #b8ffb8
+        $success-medium = #4dff4d
+        $success-hover = #007a00
+        $love-low = #fee9ee
+        $wiki = green
+        $blend-primary-secondary-5 = #f9f9f9
+        $primary-med-or-secondary-med = #919191
+        $primary-med-or-secondary-high = #919191
+        $primary-high-or-secondary-low = #646464
+        $primary-low-mid-or-secondary-high = #bdbdbd
+        $primary-low-mid-or-secondary-low = #bdbdbd
+        $primary-or-primary-low-mid = #222
+        $highlight-low-or-medium = #ffffca
+        $tertiary-or-tertiary-low = #08c
+        $tertiary-low-or-tertiary-high = #d1f0ff
+        $tertiary-med-or-tertiary = #6cf
+        $secondary-or-primary = #fff
+        $tertiary-or-white = #08c
+        $facebook-or-white = #1877f2
+        $twitter-or-white = #1da1f2
+        $hljs-comment = #998
+        $hljs-number = #099
+        $hljs-string = #d14
+        $hljs-literal = #458
+        $hljs-tag = #000080
+        $hljs-attribute = #008080
+        $hljs-symbol = #990073
+        $hljs-bg = #f8f8f8
+        $google = #fff
+        $google-hover = #f2f2f2
+        $instagram = #e1306c
+        $instagram-hover = #ac194b
+        $facebook = #1877f2
+        $facebook-hover = #0a54b3
+        $cas = #70ba61
+        $twitter = #1da1f2
+        $twitter-hover = #0c85d0
+        $github = #100e0f
+        $github-hover = #463e42
+        $discord = #7289da
+        $discord-hover = #4a67cf
+        $gold = #e7c300
+        $silver = silver
+        $bronze = #cd7f32
+    shadow-under-text()
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25)
+    icon-mono()
         transition: filter 0.25s !important
-else if owl-style-name == "rgb"
-    @keyframes rgb-owl
-        from
-            filter: hue-rotate(0deg) brightness(150%)
-        to
-            filter: hue-rotate(360deg) brightness(150%)
-    owl-style()
-        transition: filter 0.25s !important
-        animation: 4s linear infinite running rgb-owl
-@-moz-document domain("cms.sic.saarland")
+        filter: $tint-white-filter brightness(lightness($primary))
+    icon-mono-hover()
+        filter: $tint-white-filter brightness(lightness($secondary))
+    if owl-style-name == "mono"
+        owl-style()
+            icon-mono()
+    else if owl-style-name == "default"
+        owl-style()
+            transition: filter 0.25s !important
+    else if owl-style-name == "rgb"
+        @keyframes rgb-owl
+            from
+                filter: hue-rotate(0deg) brightness(150%)
+            to
+                filter: hue-rotate(360deg) brightness(150%)
+        owl-style()
+            transition: filter 0.25s !important
+            animation: 4s linear infinite running rgb-owl
+
     html
         color: $primary !important
         font-family: $font-family
@@ -471,7 +475,7 @@ else if owl-style-name == "rgb"
         color: $primary
         border-color: $primary
         background: transparent
-@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/(?!forum).*")
+@-moz-document regexp("https://cms\\.(sic\\.saarland|saarland-informatics-campus\\.de)/[\\w-]+/(?!forum).*")
     /* NAV */
     .navbar, .user-login
         background: $secondary !important
@@ -712,7 +716,7 @@ else if owl-style-name == "rgb"
         opacity: 1 !important
         &:hover, &:focus
             color: $danger-hover !important
-@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/[^/]+/kNobelpreis")
+@-moz-document regexp("https://cms\\.(sic\\.saarland|saarland-informatics-campus\\.de)/[\\w-]+/[^/]+/kNobelpreis")
     #knobelranking
         background: $secondary
         border: 1px solid $secondary-low
@@ -723,7 +727,7 @@ else if owl-style-name == "rgb"
             background: $primary-low
         .achieved
             background: $tertiary
-@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/termine/calendar/index")
+@-moz-document regexp("https://cms\\.(sic\\.saarland|saarland-informatics-campus\\.de)/[\\w-]+/termine/calendar/index")
     .Calendar
         .fc-header tr
             border-bottom: none
@@ -787,7 +791,7 @@ else if owl-style-name == "rgb"
                 background: $danger
         .fc-event-bg
             display: none
-@-moz-document regexp("https://cms.sic.saarland/[\\w-]+/forum/.*")
+@-moz-document regexp("https://cms\\.(sic\\.saarland|saarland-informatics-campus\\.de)/[\\w-]+/forum/.*")
     body
         padding: 0 !important
         margin: 0 !important
